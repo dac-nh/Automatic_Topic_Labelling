@@ -1,0 +1,33 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# An example controller showing a sample home page
+GET         /home                                   controllers.HomeController.index
+# An example controller showing how to use dependency injection
+GET         /count                                  controllers.CountController.count
+# An example controller showing how to write asynchronous code
+GET         /message                                controllers.AsyncController.message
+
+####### Orient DB #######
+GET         /                                       controllers.CategoryController.index
+GET         /orient-db/topic-labeling               controllers.CategoryController.topicLabelingView
+GET         /orient-db/topic                        controllers.CategoryController.main
+GET         /orient-db/get-list-topic               controllers.CategoryController.getListTopic
+GET         /orient-db/get-all-topic-label          controllers.CategoryController.getAllTopicLabel
+POST        /orient-db/get-list-document            controllers.CategoryController.getListDocumentOfTopic
+POST        /orient-db/get-list-keyword             controllers.CategoryController.getListKeywordOfTopic
+POST        /orient-db/get-paper-abstract           controllers.CategoryController.getPaperAbstract
+POST        /orient-db/topic-labeling               controllers.CategoryController.topicLabeling
+POST        /orient-db/estimate-topic               controllers.CategoryController.estimateTopicsForVector
+POST        /orient-db/search-topic-by-label        controllers.CategoryController.getTopicByLabel
+####### Neo4j #######
+GET         /neo4j/topic                            controllers.TopicController.main
+GET         /neo4j/get-list-topic                   controllers.TopicController.getListTopicNeo4j
+GET         /neo4j/topic-labeling                   controllers.TopicController.topicLabelingGetPage
+POST        /neo4j/get-list-keyword                 controllers.TopicController.getListKeywordOfTopicNeo4j
+POST        /neo4j/topic-labeling-post              controllers.TopicController.topicLabelingPost
+# Map static resources from the /public folder to the /assets URL path
+GET         /assets/*file                           controllers.Assets.versioned(path="/public", file: Asset)
+
+

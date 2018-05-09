@@ -1,0 +1,81 @@
+integrity checking is the process of comparing the current state of stored data and/or programs to a previously recorded state in order to detect any changes (and so it sometimes called change detection)...
+
+generally the state information that gets used in the comparison is in the form of a hash of some kind and ideally the baseline state that the current state is compared to was generated when their was nothing wrong with the system...
+
+the reasoning behind this technique is that for anything bad to happen on a system something on that system must change, so then detecting when something bad has happened simply requires detecting changes that shouldn't have happened...
+
+integrity checking is generally considered one of the strongest anti-malware controls, since it has the potential to detect and locate all persistent malware intrusions along with any additional persistent changes to the system that malware could have made... unfortunately it is a detective, rather than preventative control - it can only detect when prevention has failed and so is only good after the fact... it also places a fair bit of burden on the user to be able to tell good changes from bad ones...
+Integrity checking products work by reading your entire disk and recording integrity data that acts as a signature for the files and system sectors. An integrity check program with built-in intelligence is the only solution that can handle all the threats to your data as well as viruses. Integrity checkers also provide the only reliable way to discover what damage a virus has done.
+So, why isn’t everyone using an integrity checker? In fact, many anti-virus products now incorporate integrity checking techniques. One problem with many products is that they don’t use these techniques in a comprehensive way. There are still too many things not being checked.
+
+Some older integrity checkers were simply too slow or hard to use to be truly effective. A disadvantage of a bare-bones integrity checker is that it can’t differentiate file corruption caused by a bug from corruption caused by a virus. Advanced integrity checkers that incorporate the capability to analyze the nature of the changes and recognize changes caused by a virus have become available. Some integrity checkers now use other anti-virus techniques along with integrity checking to improve their intelligence and ease of use.
+
+If you choose an integrity checker, be sure it has all these features:
+
+It’s easy to use with clear, unambiguous reports and built-in help.
+It hides complexity, so that complicated details of system file or system sector changes are only presented if they contain information the user must act upon.
+The product recognizes the various files on the PC so it can alert the user with special warnings if vital files have changed.
+It’s fast. An integrity checker is of no use if it’s too slow.
+It recognizes known viruses, so the user doesn’t have to do all the work to determine if a change is due to a software conflict, or if it’s due to a virus. This also helps protect the integrity checker against attacks by viruses directed at it.
+It’s important that the integrity computation be more sophisticated than a mere checksum. Two sectors may get reversed in a file or other damage may occur that otherwise rearranges data in a file. A simple checksum will not detect these changes. A cryptographic computation technique is best.
+It’s comprehensive. Some integrity checkers, in order to improve their speed, don’t read each file in its entirety. They read only portions of larger files. They just spot check. This is unacceptable; it’s important to know the file hasn’t changed, not just that some of the file hasn’t changed.
+It checks and restores both boot and partition sectors. Some programs check only files.
+For protection, it should have safety features built in (e.g., ability to define the signature information file name and store the information on a external media).
+While using an integrity checker is an excellent way to monitor changes to your system, with today’s operating systems so many files change on a regular basis it’s imperative that you also use a good up-to-date scanner along with the integrity checker or for the integrity checker to have that capability built in.
+
+Summary
+
+Integrity checking products read the disk and create signature information to determine changes.
+Coupled with virus identification, using integrity checking should be able to detect most any virus with the bonus of also detecting data corruption.
+Data integrity is the maintenance of, and the assurance of the accuracy and consistency of, data over its entire life-cycle,[1] and is a critical aspect to the design, implementation and usage of any system which stores, processes, or retrieves data. The term data integrity is broad in scope and may have widely different meanings depending on the specific context – even under the same general umbrella of computing. This article provides only a broad overview of some of the different types and concerns of data integrity.
+
+Data integrity is the opposite of data corruption, which is a form of data loss. The overall intent of any data integrity technique is the same: ensure data is recorded exactly as intended (such as a database correctly rejecting mutually exclusive possibilities,) and upon later retrieval, ensure the data is the same as it was when it was originally recorded. In short, data integrity aims to prevent unintentional changes to information. Data integrity is not to be confused with data security, the discipline of protecting data from unauthorized parties.
+
+Any unintended changes to data as the result of a storage, retrieval or processing operation, including malicious intent, unexpected hardware failure, and human error, is failure of data integrity. If the changes are the result of unauthorized access, it may also be a failure of data security. Depending on the data involved this could manifest itself as benign as a single pixel in an image appearing a different color than was originally recorded, to the loss of vacation pictures or a business-critical database, to even catastrophic loss of human life in a life-critical system.
+Integrity types[edit]
+Physical integrity[edit]
+Physical integrity deals with challenges associated with correctly storing and fetching the data itself. Challenges with physical integrity may include electromechanical faults, design flaws, material fatigue, corrosion, power outages, natural disasters, acts of war and terrorism, and other special environmental hazards such as ionizing radiation, extreme temperatures, pressures and g-forces. Ensuring physical integrity includes methods such as redundant hardware, an uninterruptible power supply, certain types of RAID arrays, radiation hardened chips, error-correcting memory, use of a clustered file system, using file systems that employ block level checksums such as ZFS, storage arrays that compute parity calculations such as exclusive or or use a cryptographic hash function and even having a watchdog timer on critical subsystems.
+
+Physical integrity often makes extensive use of error detecting algorithms known as error-correcting codes. Human-induced data integrity errors are often detected through the use of simpler checks and algorithms, such as the Damm algorithm or Luhn algorithm. These are used to maintain data integrity after manual transcription from one computer system to another by a human intermediary (e.g. credit card or bank routing numbers). Computer-induced transcription errors can be detected through hash functions.
+
+In production systems these techniques are used together to ensure various degrees of data integrity. For example, a computer file system may be configured on a fault-tolerant RAID array, but might not provide block-level checksums to detect and prevent silent data corruption. As another example, a database management system might be compliant with the ACID properties, but the RAID controller or hard disk drive's internal write cache might not be.
+
+Logical integrity[edit]
+See also: Mutex and Copy-on-write
+This type of integrity is concerned with the correctness or rationality of a piece of data, given a particular context. This includes topics such as referential integrity and entity integrity in a relational database or correctly ignoring impossible sensor data in robotic systems. These concerns involve ensuring that the data "makes sense" given its environment. Challenges include software bugs, design flaws, and human errors. Common methods of ensuring logical integrity include things such as a check constraints, foreign key constraints, program assertions, and other run-time sanity checks.
+
+Both physical and logical integrity often share many common challenges such as human errors and design flaws, and both must appropriately deal with concurrent requests to record and retrieve data, the latter of which is entirely a subject on its own.
+
+Databases[edit]
+Data integrity contains guidelines for data retention, specifying or guaranteeing the length of time data can be retained in a particular database. In order to achieve data integrity, these rules are consistently and routinely applied to all data entering the system, and any relaxation of enforcement could cause errors in the data. Implementing checks on the data as close as possible to the source of input (such as human data entry), causes less erroneous data to enter the system. Strict enforcement of data integrity rules causes the error rates to be lower, resulting in time saved troubleshooting and tracing erroneous data and the errors it causes algorithms.
+
+Data integrity also includes rules defining the relations a piece of data can have, to other pieces of data, such as a Customer record being allowed to link to purchased Products, but not to unrelated data such as Corporate Assets. Data integrity often includes checks and correction for invalid data, based on a fixed schema or a predefined set of rules. An example being textual data entered where a date-time value is required. Rules for data derivation are also applicable, specifying how a data value is derived based on algorithm, contributors and conditions. It also specifies the conditions on how the data value could be re-derived.
+
+Types of integrity constraints[edit]
+Data integrity is normally enforced in a database system by a series of integrity constraints or rules. Three types of integrity constraints are an inherent part of the relational data model: entity integrity, referential integrity and domain integrity:
+
+Entity integrity concerns the concept of a primary key. Entity integrity is an integrity rule which states that every table must have a primary key and that the column or columns chosen to be the primary key should be unique and not null.
+Referential integrity concerns the concept of a foreign key. The referential integrity rule states that any foreign-key value can only be in one of two states. The usual state of affairs is that the foreign-key value refers to a primary key value of some table in the database. Occasionally, and this will depend on the rules of the data owner, a foreign-key value can be null. In this case we are explicitly saying that either there is no relationship between the objects represented in the database or that this relationship is unknown.
+Domain integrity specifies that all columns in a relational database must be declared upon a defined domain. The primary unit of data in the relational data model is the data item. Such data items are said to be non-decomposable or atomic. A domain is a set of values of the same type. Domains are therefore pools of values from which actual values appearing in the columns of a table are drawn.
+User-defined integrity refers to a set of rules specified by a user, which do not belong to the entity, domain and referential integrity categories.
+If a database supports these features, it is the responsibility of the database to ensure data integrity as well as the consistency model for the data storage and retrieval. If a database does not support these features it is the responsibility of the applications to ensure data integrity while the database supports the consistency model for the data storage and retrieval.
+
+Having a single, well-controlled, and well-defined data-integrity system increases
+
+stability (one centralized system performs all data integrity operations)
+performance (all data integrity operations are performed in the same tier as the consistency model)
+re-usability (all applications benefit from a single centralized data integrity system)
+maintainability (one centralized system for all data integrity administration).
+Modern databases support these features (see Comparison of relational database management systems), and it has become the de facto responsibility of the database to ensure data integrity. Companies, and indeed many database systems, offer products and services to migrate legacy systems to modern databases.
+
+Examples[edit]
+An example of a data-integrity mechanism is the parent-and-child relationship of related records. If a parent record owns one or more related child records all of the referential integrity processes are handled by the database itself, which automatically ensures the accuracy and integrity of the data so that no child record can exist without a parent (also called being orphaned) and that no parent loses their child records. It also ensures that no parent record can be deleted while the parent record owns any child records. All of this is handled at the database level and does not require coding integrity checks into each applications.
+
+File systems[edit]
+Various research results show that neither widespread filesystems (including UFS, Ext, XFS, JFS and NTFS) nor hardware RAID solutions provide sufficient protection against data integrity problems.[2][3][4][5][6]
+
+Some filesystems (including Btrfs and ZFS) provide internal data and metadata checksumming, what is used for detecting silent data corruption and improving data integrity. If a corruption is detected that way and internal RAID mechanisms provided by those filesystems are also used, such filesystems can additionally reconstruct corrupted data in a transparent way.[7] This approach allows improved data integrity protection covering the entire data paths, which is usually known as end-to-end data protection.[8]
+
+Data storage[edit]
+Main article: Data Integrity Field
+Apart from data in databases, standards exist to address the integrity of data on storage devices.[9]

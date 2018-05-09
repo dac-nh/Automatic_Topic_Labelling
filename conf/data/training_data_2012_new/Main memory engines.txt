@@ -1,0 +1,35 @@
+An in-memory database (IMDB, also main memory database system or MMDB or memory resident database) is a database management system that primarily relies on main memory for computer data storage. It is contrasted with database management systems that employ a disk storage mechanism. Main memory databases are faster than disk-optimized databases because disk access is slower than memory access, the internal optimization algorithms are simpler and execute fewer CPU instructions. Accessing data in memory eliminates seek time when querying the data, which provides faster and more predictable performance than disk.[1][2]
+
+Applications where response time is critical, such as those running telecommunications network equipment and mobile advertising networks, often use main-memory databases.[3] IMDBs have gained a lot of traction, especially in the data analytics space, starting in the mid-2000s – mainly due to multi-core processors that can address large memory and due to less expensive RAM.[4][5]
+
+A potential technical hurdle with in-memory data storage is the volatility of RAM. Specifically in the event of a power loss, intentional or otherwise, data stored in volatile RAM is lost.[6] With the introduction of non-volatile random access memory technology,[when?] in-memory databases will be able to run at full speed and maintain data in the event of power failure.[7][8]
+ACID support[edit]
+See also: Atomicity, consistency, isolation, durability
+In its simplest form, main memory databases store data on volatile memory devices. These devices lose all stored information when the device loses power or is reset. In this case, IMDBs can be said to lack support for the "durability" portion of the ACID (atomicity, consistency, isolation, durability) properties. Volatile memory-based IMDBs can, and often do, support the other three ACID properties of atomicity, consistency and isolation.
+
+Many IMDBs have added durability via the following mechanisms:
+
+Snapshot files, or, checkpoint images, which record the state of the database at a given moment in time. The system typically generates these periodically, or at least when the IMDB does a controlled shut-down. While they give a measure of persistence to the data (in that the database does not lose everything in the case of a system crash) they only offer partial durability (as 'recent" changes will be lost). For full durability, they need supplementing with one of the following:
+Transaction logging, which records changes to the database in a journal file and facilitates automatic recovery of an in-memory database.
+Non-Volatile DIMM (NVDIMM), a memory module that has a DRAM interface, often combined with NAND flash for the Non-Volatile data security. The first NVDIMM solutions were designed with supercapacitors instead of batteries for the backup power source. With this storage, IMDB can resume securely from its state upon reboot.
+Non-volatile random access memory (NVRAM), usually in the form of static RAM backed up with battery power (battery RAM), or an electrically erasable programmable ROM (EEPROM). With this storage, the re-booting IMDB system can recover the data store from its last consistent state.
+High availability implementations that rely on database replication, with automatic failover to an identical standby database in the event of primary database failure. To protect against loss of data in the case of a complete system crash, replication of an IMDB is normally used in addition to one or more of the mechanisms listed above.
+Some IMDBs allow the database schema to specify different durability requirements for selected areas of the database - thus, faster-changing data that can easily be regenerated or that has no meaning after a system shut-down would not need to be journaled for durability (though it would have to be replicated for high availability), whereas configuration information would be flagged as needing preservation.
+
+Hybrids with on-disk databases[edit]
+While storing data in-memory confers performance advantages, it is an expensive method of data storage. An approach to realising the benefits of in-memory storage while limiting its costs is to store the most frequently accessed data in-memory and the rest on disk. Since there is no hard distinction between which data should be stored in-memory and which should be stored on disk, some systems dynamically update where data is stored based on the data's usage.[9] This approach is subtly different from caching, in which the most recently accessed data is cached, as opposed to the most frequently accessed data being stored in-memory.
+
+The flexibility of hybrid approaches allow a balance to be struck between:
+
+performance (which is enhanced by sorting, storing and retrieving specified data entirely in memory, rather than going to disk)
+cost, because a less costly hard disk can be substituted for more memory
+persistence
+form factor, because RAM chips cannot approach the density of a small hard drive
+In the cloud computing industry the terms "data temperature", or "hot data" and "cold data" have emerged to describe how data is stored in this respect.[10] Hot data is used to describe mission-critical data that needs to be accessed frequently while cold data describes data that is needed less often and less urgently, such as data kept for archiving or auditing purposes. Hot data should be stored in ways offering fast retreiveal and modification, often accomplished by in-memory storage but not always. Cold data on the other hand can be stored in a more cost-effective way and is accepted that data access will likely be slower compared to hot data. While these descriptions are useful, there is no concrete definition for "hot" and "cold".[10]
+
+Manufacturing efficiency provides another reason for selecting a combined in-memory/on-disk database system. Some device product lines, especially in consumer electronics, include some units with permanent storage, and others that rely on memory for storage (set-top boxes, for example). If such devices require a database system, a manufacturer can adopt a hybrid database system at lower and upper cost, and with less customization of code, rather than using separate in-memory and on-disk databases, respectively, for its disk-less and disk-based products.
+
+The first database engine to support both in-memory and on-disk tables in a single database, WebDNA, was released in 1995.
+
+Storage memory[edit]
+Another variation involves large amounts of nonvolatile memory in the server, for example, flash memory chips as addressable memory rather than structured as disk arrays. A database in this form of memory combines very fast access speed with persistence over reboots and power losses.[11]

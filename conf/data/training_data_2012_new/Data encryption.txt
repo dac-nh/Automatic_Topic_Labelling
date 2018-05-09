@@ -1,0 +1,71 @@
+Data encryption defined in Data Protection 101, our series on the fundamentals of data security.
+
+A Definition of Data Encryption
+
+Data encryption translates data into another form, or code, so that only people with access to a secret key (formally called a decryption key) or password can read it. Encrypted data is commonly referred to as ciphertext, while unencrypted data is called plaintext. Currently, encryption is one of the most popular and effective data security methods used by organizations. Two main types of data encryption exist - asymmetric encryption, also known as public-key encryption, and symmetric encryption.
+
+The Primary Function of Data Encryption
+
+The purpose of data encryption is to protect digital data confidentiality as it is stored on computer systems and transmitted using the internet or other computer networks. The outdated data encryption standard (DES) has been replaced by modern encryption algorithms that play a critical role in the security of IT systems and communications.
+
+These algorithms provide confidentiality and drive key security initiatives including authentication, integrity, and non-repudiation. Authentication allows for the verification of a message’s origin, and integrity provides proof that a message’s contents have not changed since it was sent. Additionally, non-repudiation ensures that a message sender cannot deny sending the message.
+
+The Process of Data Encryption
+
+Data, or plaintext, is encrypted with an encryption algorithm and an encryption key. The process results in ciphertext, which only can be viewed in its original form if it is decrypted with the correct key.
+
+Symmetric-key ciphers use the same secret key for encrypting and decrypting a message or file. While symmetric-key encryption is much faster than asymmetric encryption, the sender must exchange the encryption key with the recipient before he can decrypt it. As companies find themselves needing to securely distribute and manage huge quantities of keys, most data encryption services have adapted and use an asymmetric algorithm to exchange the secret key after using a symmetric algorithm to encrypt data.
+
+On the other hand, asymmetric cryptography, sometimes referred to as public-key cryptography, uses two different keys, one public and one private. The public key, as it is named, may be shared with everyone, but the private key must be protected. The Rivest-Sharmir-Adleman (RSA) algorithm is a cryptosystem for public-key encryption that is widely used to secure sensitive data, especially when it is sent over an insecure network like the internet. The RSA algorithm’s popularity comes from the fact that both the public and private keys can encrypt a message to assure the confidentiality, integrity, authenticity, and non-repudiability of electronic communications and data through the use of digital signatures.
+
+Challenges to Contemporary Encryption
+
+The most basic method of attack on encryption today is brute force, or trying random keys until the right one is found. Of course, the length of the key determines the possible number of keys and affects the plausibility of this type of attack. It is important to keep in mind that encryption strength is directly proportional to key size, but as the key size increases so do the number of resources required to perform the computation.
+
+Alternative methods of breaking a cipher include side-channel attacks and cryptanalysis. Side-channel attacks go after the implementation of the cipher, rather than the actual cipher itself. These attacks tend to succeed if there is an error in system design or execution. Likewise, cryptanalysis means finding a weakness in the cipher and exploiting it. Cryptanalysis is more likely to occur when there is a flaw in the cipher itself.
+
+Data Encryption Solutions
+
+Data protection solutions for data encryption can provide encryption of devices, email, and data itself. In many cases, these encryption functionalities are also met with control capabilities for devices, email, and data. Companies and organizations face the challenge of protecting data and preventing data loss as employees use external devices, removable media, and web applications more often as a part of their daily business procedures. Sensitive data may no longer be under the company’s control and protection as employees copy data to removable devices or upload it to the cloud. As a result, the best data loss prevention solutions prevent data theft and the introduction of malware from removable and external devices as well as web and cloud applications. In order to do so, they must also ensure that devices and applications are used properly and that data is secured by auto-encryption even after it leaves the organization.
+
+As we mentioned, email control and encryption is another critical component of a data loss prevention solution. Secure, encrypted email is the only answer for regulatory compliance, a remote workforce, BYOD, and project outsourcing. Premier data loss prevention solutions allow your employees to continue to work and collaborate through email while the software and tools proactively tag, classify, and encrypt sensitive data in emails and attachments. The best data loss prevention solutions automatically warn, block, and encrypt sensitive information based on message content and context, such as user, data class, and recipient.
+
+While data encryption may seem like a daunting, complicated process, data loss prevention software handles it reliably every day. Data encryption does not have to be something your organization tries to solve on its own. Choose a top data loss prevention software that offers data encryption with device, email, and application control and rest assured that your data is safe.
+Encryption is a security method in which information is encoded in such a way that only authorized user can read it. It uses encryption algorithm to generate ciphertext that can only be read if decrypted.
+
+Types of Encryption
+There are two types of encryptions schemes as listed below:
+
+Symmetric Key encryption
+
+Public Key encryption
+
+SYMMETRIC KEY ENCRYPTION
+Symmetric key encryption algorithm uses same cryptographic keys for both encryption and decryption of cipher text.
+
+internet_technologies_tutorial
+PUBLIC KEY ENCRYPTION
+Public key encryption algorithm uses pair of keys, one of which is a secret key and one of which is public. These two keys are mathematically linked with each other.
+
+internet_technologies_tutorial
+Hashing
+In terms of security, hashing is a technique used to encrypt data and generate unpredictable hash values. It is the hash function that generates the hash code, which helps to protect the security of transmission from unauthorized users.
+
+Hash function algorithms
+Hashing algorithm provides a way to verify that the message received is the same as the message sent. It can take a plain text message as input and then computes a value based on that message.
+
+Key Points
+
+The length of computed value is much shorter than the original message.
+
+It is possible that different plain text messages could generate the same value.
+
+Here we will discuss a sample hashing algorithm in which we will multiply the number of a’s, e’s and h’s in the message and will then add the number of o’s to this value.
+
+For example, the message is “ the combination to the safe is two, seven, thirty-five”. The hash of this message, using our simple hashing algorithm is as follows:
+
+The hash of this message is sent to John with cipher text. After he decrypts the message, he computes its hash value using the agreed upon hashing algorithm. If the hash value sent by Bob doesn’t match the hash value of decrypted message, John will know that the message has been altered.
+
+For example, John received a hash value of 17 and decrypted a message Bob has sent as “You are being followed, use backroads, hurry”
+
+He could conclude the message had been altered, this is because the hash value of the message he received is:

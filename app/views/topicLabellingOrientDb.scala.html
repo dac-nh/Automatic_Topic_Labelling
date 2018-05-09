@@ -1,0 +1,84 @@
+@(title: String, style: String = "scala")
+<div class="col-lg-6">
+    <form method="post" enctype="multipart/form-data">
+        <br />
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong>Upload files</strong>
+                        <small> </small></div>
+                    <div class="panel-body">
+                        <div class="input-group file-preview">
+                            <input id="fileName" placeholder="" class="form-control file-preview-filename" disabled="disabled">
+                            <span class="input-group-btn">
+                                <button id="clearBtn" type="button" class="btn btn-default file-preview-clear" onclick="this.form.reset(); $('#progressBar').get(0).style.width ='0%';"> <span class="glyphicon glyphicon-remove"></span>
+                                    Clear </button>
+                                <div class="btn btn-default file-preview-input"> <span class="glyphicon glyphicon-folder-open"></span>
+                                    <span class="file-preview-input-title">Browse</span>
+                                    <input id="inputFile" type="file" accept=".txt" name="input-file-preview"/>
+                                </div>
+                                <button type="button" class="btn btn-labeled btn-primary" onclick="topicLabeling()"> <span class="btn-label"><i class="glyphicon glyphicon-upload"></i> </span>
+                                    Upload</button>
+                            </span>
+                        </div>
+                        <br />
+                        <div class="progress">
+                            <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0;"></div>
+                        </div>
+                        <p id="noFileWarning" style="color: red" hidden="hidden">Please upload a text file</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-lg-12">
+        <br />
+        <div class="col-lg-12 panel" style="background-color: #ffffff;
+            color: #000000">
+            <h2 id="keywordTopic" style="text-align: center">List Keywords</h2>
+            <table id="keywordTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        @*<div class="col-lg-6" style="background-color: #f1f1f1">*@
+        @*<p id="topicName" class="col-lg-11"></p><p id="topicWeight" class="col-lg-1"></p>*@
+        @*</div>*@
+    </div>
+</div>
+<div class="col-lg-6">
+    <div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="topic-pie-chart-euclidean" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div id="topic-pie-chart-kl" style="height: 400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="col-lg-6">
+            <pre>
+                <p id="topicNameEuclidean" class="col-lg-8"></p><p id="topicWeightEuclidean" class="col-lg-1"></p>
+            </pre>
+        </div>
+        <div class="col-lg-6">
+            <pre>
+                <p id="topicNameKl" class="col-lg-8"></p><p id="topicWeightKl" class="col-lg-1"></p>
+            </pre>
+        </div>
+    </div>
+</div>
+<script src="@routes.Assets.versioned("javascripts/topicLabellingOrientDb.js")"></script>

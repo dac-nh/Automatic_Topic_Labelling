@@ -1,0 +1,83 @@
+A key-value store, or key-value database, is a data storage paradigm designed for storing, retrieving, and managing associative arrays, a data structure more commonly known today as a dictionary or hash. Dictionaries contain a collection of objects, or records, which in turn have many different fields within them, each containing data. These records are stored and retrieved using a key that uniquely identifies the record, and is used to quickly find the data within the database.
+
+KeyValue.PNG
+Key-value stores work in a very different fashion from the better known relational databases (RDB). RDBs pre-define the data structure in the database as a series of tables containing fields with well defined data types. Exposing the data types to the database program allows it to apply a number of optimizations. In contrast, key-value systems treat the data as a single opaque collection which may have different fields for every record. This offers considerable flexibility and more closely follows modern concepts like object-oriented programming. Because optional values are not represented by placeholders as in most RDBs, key-value stores often use far less memory to store the same database, which can lead to large performance gains in certain workloads.
+
+Performance, a lack of standardization and other issues limited key-value systems to niche uses for many years, but the rapid move to cloud computing after 2010 has led to a renaissance as part of the broader NoSQL movement. Some graph databases are also key-value stores internally, adding the concept of the relationships (pointers) between records as a first class data type.
+Types and notable examples[edit]
+Key-value stores can use consistency models ranging from eventual consistency to serializability. Some support ordering of keys. Some maintain data in memory (RAM), while others employ solid-state drives or rotating disks.
+
+Redis was the most popular implementation of a key-value database as of August 2015, according to DB-Engines Ranking.[1]
+
+Another example of key-value database is Oracle NoSQL Database. Oracle NoSQL Database provides a key-value paradigm to the application developer. Every entity (record) is a set of key-value pairs. A key has multiple components, specified as an ordered list. The major key identifies the entity and consists of the leading components of the key. The subsequent components are called minor keys. This organization is similar to a directory path specification in a file system (e.g., /Major/minor1/minor2/). The “value” part of the key-value pair is simply an uninterpreted string of bytes of arbitrary length.[2]
+
+The Unix system provides dbm (database manager) which is a library originally written by Ken Thompson. Also ported to Windows OS platforms, provided through programming languages such as Perl for Win32. The dbm manages associative arrays of arbitrary data by use of a single key (a primary key). Modern implementations include ndbm, sdbm and GNU dbm.
+
+KV – eventually consistent[edit]
+Dynamo
+Cassandra
+Oracle NoSQL Database
+Project Voldemort
+Riak[3]
+OpenLink Virtuoso
+KV – ordered[edit]
+Berkeley DB
+FairCom c-treeACE/c-treeRTG
+FoundationDB
+HyperDex
+IBM Informix C-ISAM
+InfinityDB
+LMDB
+MemcacheDB
+KV – RAM[edit]
+Aerospike
+Apache Ignite
+Coherence
+FairCom c-treeACE
+GridGain Systems
+Hazelcast
+memcached
+OpenLink Virtuoso
+Redis
+XAP
+KV – solid-state drive or rotating disk[edit]
+Aerospike
+CDB
+Clusterpoint Database Server
+Couchbase Server
+FairCom c-treeACE
+GT.M[4]
+Hibari
+Keyspace
+LevelDB
+LMDB
+MemcacheDB (using Berkeley DB or LMDB)
+NoSQLz
+Coherence
+Oracle NoSQL Database
+quasardb
+RocksDB (fork of LevelDB)
+OpenLink Virtuoso
+Tarantool
+Tokyo Cabinet and Kyoto Cabinet
+Tuple space
+Key-value Stores
+
+Key-value stores are probably the simplest form of database management systems. They can only store pairs of keys and values, as well as retrieve values when a key is known.
+
+These simple systems are normally not adequate for complex applications. On the other hand, it is exactly this simplicity, that makes such systems attractive in certain circumstances. For example resource-efficient key-value stores are often applied in embedded systems or as high performance in-process databases.
+
+Advanced Forms
+
+An extended form of key-value stores is able to sort the keys, and thus enables range queries as well as an ordered processing of keys.
+
+Many systems provide further extensions so that we see a fairly seamless transition to document stores and wide column stores.
+
+Important Examples
+
+Redis
+Memcached
+Microsoft Azure Cosmos DB
+Hazelcast
+Ehcache
+Find more systems in our key-value store ranking.

@@ -1,0 +1,45 @@
+@(title: String, style: String = "scala")
+<div style="align-items: center;">
+  <div id="wrapper">
+    <div id="myNetwork" style=" height: 750px" class="col-lg-8" oncontextmenu="return false;"></div>
+    <div id="loadingBar">
+      <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+          <div id="bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4" id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Keyword</a></li>
+      <li><a href="#tabs-2">Document</a></li>
+    </ul>
+    <div id="tabs-2" style="text-align: center">
+      <h2 id="documentTopic"></h2>
+      <table id="documentTable" class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Label</th>
+            <th>Tools</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div id="tabs-1" style="text-align: center">
+      <h2 id="keywordTopic"></h2>
+      <table id="keywordTable" class="table">
+        <thead>
+          <tr>
+            <th>Label</th>
+            <th>Weight</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+<script src="@routes.Assets.versioned("javascripts/topicNeo4j.js")"></script>

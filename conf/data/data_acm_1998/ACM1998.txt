@@ -1,0 +1,109 @@
+Computer
+Hardware
+	Hardwired control
+	Microprogram Design Aids
+	Firmware engineering
+	Compilers
+	Optimization
+	Design Style
+	High-Speed Arithmetic
+	Algorithms
+	Memory Structure
+	Semiconductor Memories
+	Read-only memory (ROM)
+	Primary memory
+	Data Communications Devices 
+	Input/Output Devices
+	Logic design
+	Design Styles
+	Combinational logic
+	Logic arrays
+	Sequential circuits
+	Memory control and access
+	Intergrated circuit
+	Types and Design Styles
+	Input/output circuits
+	Microprocessors and microcomputers
+Computer Systems Organization
+	RISC/CISC
+	Computer Communcation Network
+	Network Architecture and Design
+	Network Topology
+	Packet Switching
+	Wireless
+	Routing Protocol
+	Distributed Database
+	Network operating system
+	Local area network
+	Wide area network
+	Internetworking
+	SPECIAL-PURPOSE AND APPLICATION-BASED SYSTEMS
+	Computer System
+	MicroComputers
+		Personal Computer
+SOFTWARE
+	Programming Techniques
+		Concurrent programming
+		Distributed Programming
+		Parallel Programming
+		Object oriented programming
+		Logic Programming
+	Software Engirneering
+		Design Tools and Techniques
+			Computer-aided software engineering
+			Flowchart
+			Object-oriented_design
+			Structured programming
+			Top-down and bottom-up design
+		Coding
+		Applications
+		software testing
+		Software Debugging
+		Software architecture
+	Programming Language
+		Language Classifications
+			Assembly language
+			Nonprocedural language
+		Language Constructs and Features
+			Abtract data type
+			Class and object
+			Data type and structure
+			Framework
+			Inheritance
+			Input and Output
+	Operating system
+		Process Management
+			Deadlock
+			Synchronization
+Information Systems 
+	Models and Principal
+		Systems and Information Theory
+		Information theory
+		User/Machine Systems
+		Human factors
+		Machine Learning
+	Database management system
+		Database Security
+		Logical Design
+		Database normalization
+		Database schema
+		Database Language
+		Data Manipulation Language
+		Data Definition Language
+		Query language
+		Database system
+		Distributed database
+		Object oriented database
+		Relational database
+		Database Transaction
+	Information Retrieval
+		Clustering
+		Information filtering system
+		Word processing
+		Search Engine
+Computing Methodologies
+	Artificial Intelligence
+		Games
+		Natural Language Processing
+		Machine translation
+		Robotics

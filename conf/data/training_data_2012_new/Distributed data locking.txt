@@ -1,0 +1,130 @@
+Concurrency controlling techniques ensure that multiple transactions are executed simultaneously while maintaining the ACID properties of the transactions and serializability in the schedules.
+
+In this chapter, we will study the various approaches for concurrency control.
+
+Locking Based Concurrency Control Protocols
+Locking-based concurrency control protocols use the concept of locking data items. A lock is a variable associated with a data item that determines whether read/write operations can be performed on that data item. Generally, a lock compatibility matrix is used which states whether a data item can be locked by two transactions at the same time.
+
+Locking-based concurrency control systems can use either one-phase or two-phase locking protocols.
+
+One-phase Locking Protocol
+In this method, each transaction locks an item before use and releases the lock as soon as it has finished using it. This locking method provides for maximum concurrency but does not always enforce serializability.
+
+Two-phase Locking Protocol
+In this method, all locking operations precede the first lock-release or unlock operation. The transaction comprise of two phases. In the first phase, a transaction only acquires all the locks it needs and do not release any lock. This is called the expanding or the growing phase. In the second phase, the transaction releases the locks and cannot request any new locks. This is called the shrinking phase.
+
+Every transaction that follows two-phase locking protocol is guaranteed to be serializable. However, this approach provides low parallelism between two conflicting transactions.
+
+Timestamp Concurrency Control Algorithms
+Timestamp-based concurrency control algorithms use a transaction’s timestamp to coordinate concurrent access to a data item to ensure serializability. A timestamp is a unique identifier given by DBMS to a transaction that represents the transaction’s start time.
+
+These algorithms ensure that transactions commit in the order dictated by their timestamps. An older transaction should commit before a younger transaction, since the older transaction enters the system before the younger one.
+
+Timestamp-based concurrency control techniques generate serializable schedules such that the equivalent serial schedule is arranged in order of the age of the participating transactions.
+
+Some of timestamp based concurrency control algorithms are -
+
+Basic timestamp ordering algorithm.
+Conservative timestamp ordering algorithm.
+Multiversion algorithm based upon timestamp ordering.
+Timestamp based ordering follow three rules to enforce serializability -
+
+Access Rule - When two transactions try to access the same data item simultaneously, for conflicting operations, priority is given to the older transaction. This causes the younger transaction to wait for the older transaction to commit first.
+
+Late Transaction Rule - If a younger transaction has written a data item, then an older transaction is not allowed to read or write that data item. This rule prevents the older transaction from committing after the younger transaction has already committed.
+
+Younger Transaction Rule - A younger transaction can read or write a data item that has already been written by an older transaction.
+
+Optimistic Concurrency Control Algorithm
+In systems with low conflict rates, the task of validating every transaction for serializability may lower performance. In these cases, the test for serializability is postponed to just before commit. Since the conflict rate is low, the probability of aborting transactions which are not serializable is also low. This approach is called optimistic concurrency control technique.
+
+In this approach, a transaction’s life cycle is divided into the following three phases -
+
+Execution Phase - A transaction fetches data items to memory and performs operations upon them.
+
+Validation Phase - A transaction performs checks to ensure that committing its changes to the database passes serializability test.
+
+Commit Phase - A transaction writes back modified data item in memory to the disk.
+
+This algorithm uses three rules to enforce serializability in validation phase -
+
+Rule 1 - Given two transactions Ti and Tj, if Ti is reading the data item which Tj is writing, then Ti’s execution phase cannot overlap with Tj’s commit phase. Tj can commit only after Ti has finished execution.
+
+Rule 2 - Given two transactions Ti and Tj, if Ti is writing the data item that Tj is reading, then Ti’s commit phase cannot overlap with Tj’s execution phase. Tj can start executing only after Ti has already committed.
+
+Rule 3 - Given two transactions Ti and Tj, if Ti is writing the data item which Tj is also writing, then Ti’s commit phase cannot overlap with Tj’s commit phase. Tj can start to commit only after Ti has already committed.
+
+Concurrency Control in Distributed Systems
+In this section, we will see how the above techniques are implemented in a distributed database system.
+
+Distributed Two-phase Locking Algorithm
+The basic principle of distributed two-phase locking is same as the basic two-phase locking protocol. However, in a distributed system there are sites designated as lock managers. A lock manager controls lock acquisition requests from transaction monitors. In order to enforce co-ordination between the lock managers in various sites, at least one site is given the authority to see all transactions and detect lock conflicts.
+
+Depending upon the number of sites who can detect lock conflicts, distributed two-phase locking approaches can be of three types -
+
+Centralized two-phase locking - In this approach, one site is designated as the central lock manager. All the sites in the environment know the location of the central lock manager and obtain lock from it during transactions.
+
+Primary copy two-phase locking - In this approach, a number of sites are designated as lock control centers. Each of these sites has the responsibility of managing a defined set of locks. All the sites know which lock control center is responsible for managing lock of which data table/fragment item.
+
+Distributed two-phase locking - In this approach, there are a number of lock managers, where each lock manager controls locks of data items stored at its local site. The location of the lock manager is based upon data distribution and replication.
+
+Distributed Timestamp Concurrency Control
+In a centralized system, timestamp of any transaction is determined by the physical clock reading. But, in a distributed system, any site’s local physical/logical clock readings cannot be used as global timestamps, since they are not globally unique. So, a timestamp comprises of a combination of site ID and that site’s clock reading.
+
+For implementing timestamp ordering algorithms, each site has a scheduler that maintains a separate queue for each transaction manager. During transaction, a transaction manager sends a lock request to the site’s scheduler. The scheduler puts the request to the corresponding queue in increasing timestamp order. Requests are processed from the front of the queues in the order of their timestamps, i.e. the oldest first.
+
+Conflict Graphs
+Another method is to create conflict graphs. For this transaction classes are defined. A transaction class contains two set of data items called read set and write set. A transaction belongs to a particular class if the transaction’s read set is a subset of the class’ read set and the transaction’s write set is a subset of the class’ write set. In the read phase, each transaction issues its read requests for the data items in its read set. In the write phase, each transaction issues its write requests.
+
+A conflict graph is created for the classes to which active transactions belong. This contains a set of vertical, horizontal, and diagonal edges. A vertical edge connects two nodes within a class and denotes conflicts within the class. A horizontal edge connects two nodes across two classes and denotes a write-write conflict among different classes. A diagonal edge connects two nodes across two classes and denotes a write-read or a read-write conflict among two classes.
+
+The conflict graphs are analyzed to ascertain whether two transactions within the same class or across two different classes can be run in parallel.
+
+Distributed Optimistic Concurrency Control Algorithm
+Distributed optimistic concurrency control algorithm extends optimistic concurrency control algorithm. For this extension, two rules are applied -
+
+Rule 1 - According to this rule, a transaction must be validated locally at all sites when it executes. If a transaction is found to be invalid at any site, it is aborted. Local validation guarantees that the transaction maintains serializability at the sites where it has been executed. After a transaction passes local validation test, it is globally validated.
+
+Rule 2 - According to this rule, after a transaction passes local validation test, it should be globally validated. Global validation ensures that if two conflicting transactions run together at more than one site, they should commit in the same relative order at all the sites they run together. This may require a transaction to wait for the other conflicting transaction, after validation before commit. This requirement makes the algorithm less optimistic since a transaction may not be able to commit as soon as it is validated at a site.
+One of the common problems faced by anyone building large scale distributed systems:  how to ensure that only one process (replace this with: worker, server or agent) across a fleet of servers acts on a resource? Before jumping in to how to solve this, let us take a look at the problem more in detail and see where it is applicable:
+
+What are the examples of where we need a single entity to act on a resource?
+
+Ensure only one server can write to a database or write to a file.
+Ensure that only one server can perform a particular action.
+Ensure that there is a single master that processes all writes (e.g., Google’s use of Chubby for leader election in GFS, map reduce etc).
+Coordination across distributed servers
+
+All these scenarios need a simple way to coordinate execution of process and workflows to ensure that only one entity is performing an action. This is one of the classic problems in distributed system as you have to not only elect a leader across a set of distributed processes (leader election) but also detect its failure (failure detection) and then change the appropriate group membership and elect a new leader.
+
+A classic way to solve this problem is to use some form of system that can bring consensus. This can be a single server which can act as the source of truth (not a good idea for obvious reasons of availability or durability), a system that implements a consensus algorithm like Paxos or build a form of leader election on top of a strongly consistent datastore (will get to this later).
+
+What is Paxos?
+
+Paxos is the gold standard in consensus algorithms. It is a distributed consensus protocol (or a family of protocols if you include all its derivatives)  designed to reach an agreement across a family of unreliable distributed processes. The reason this is hard is because the participating processes can be unreliable due to failures (e.g., server failure, datacenter failure or network partitions) or malicious intent (byzantine failures).
+
+You can read more about Paxos here:
+
+Paxos made simple
+Part-time parliament: for readers brave enough to read the “real thing”
+How can I use Paxos to solve the problem of coordination?
+
+In Amazon, we use consensus algorithms heavily in various parts of the company. A few ways we have solved the problem of solving this:
+
+Build a consensus library: This is a library that implements Paxos (or one of its derivatives) that the application can consume. Any decision that requires coordination such as election a leader to execute a workflow is passed as a transaction in this library and upon successful completion of the transaction, they proceed. While this approach worked well in the beginning, we quickly realized that this required many of our application developers to be experts in distributed systems. They had to understand the operational characteristics of failure modes and how to debug them. If you think this is easy, suggest reading this paper.
+Lock service: Lock service is a form of consensus service that converts the problem of reaching consensus to handing out locks. Basically, a distributed set of processes compete to acquire a lock and whoever gets the lock has the “baton” to execute a workflow, write to a database etc. This is a very popular model. The advantage with this approach compared to library is twofold:
+It is a service versus product. So, application developers do not have to worry about dealing with operations, various failure modes debugging etc.
+Abstraction of locks is a lot more simpler than trying to model it is a consensus or transaction.
+Lock service has been a widely popular means to solve this problem. Amazon has built its own lock service for internal use, Google building Chubby, and open source systems like Zookeeper.
+
+Using a strongly consistent datastore to build lock service
+
+One of the common tricks we have seen being used in the past is to emulate a lock service behavior (or APIs) using a strongly consistent datastore. Basically, a strongly consistent datastore that is replicated, highly available and durable (e.g., DynamoDB) can be used to persist the information on who is holding it, for how long etc.
+
+Now the issue that this solution does not solve is failure detection. Traditionally lock service also provides a simple library that the clients can use to heartbeat with the service. This ensures that when a lock holder is partitioned away, the lock service revokes the lock and the library notifies the lock holder to abort its critical section.
+
+In using a datastore to build lock service APIs, you have to solve this solution. In this front, I came across an interesting post on how Ryan has built a lock service API on DynamoDB. He has outlined the problem, solution and limitations quite well and very interesting read.
+
+Do you need lock service at all?
+
+An obvious question to ask yourself before venturing into any of the approaches above is: Do you need a lock service after all? Sometimes the answer is you don’t need to as executing the same workflow twice may not be an issue. Whereas there are many other cases where you need such an abstraction. So, please make this decision carefully.

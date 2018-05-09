@@ -1,0 +1,174 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+.img-circle {
+    max-height: 400px;
+    max-width: 400px;
+    min-height: 400px;
+    min-width: 400px;
+}
+
+p {
+    text-align: justify;
+}
+
+h1 {
+    text-align: center;
+}
+
+h1.header-title:before {
+    content: "";
+    display: block;
+    border-top: solid 1px silver;
+    width: 95%;
+    height: 1px;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+    text-align: center;
+    margin-top: -7px;
+}
+
+h1.header-title span {
+    background: #fff;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+    color: #216290;
+}
+
+h1.header-line:before {
+    content: "";
+    display: block;
+    border-top: solid 1px silver;
+    width: 95%;
+    height: 1px;
+    position: absolute;
+    top: 60%;
+    z-index: 1;
+    text-align: center;
+    margin-top: -7px;
+}
+
+h1.header-line span {
+    background: #fff;
+    padding: 0 15px;
+    position: relative;
+    z-index: 1;
+    color: #216290;
+}
+
+h1.user-info {
+    color: #216290;
+}
+
+div.container {
+}
+
+div.user-detail-company-rating {
+    margin-bottom: 0px;
+}
+
+div.user-detail-company-rating h2, h3 {
+    color: black;
+}
+
+div.user-detail-company-rating h2 {
+    font-weight: 700;
+}
+
+div.user-detail-company-rating h3 {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+div.user-detail-company-rating h4 {
+    color: black;
+    text-align: left;
+    height: 10px;
+}
+
+div.user-detail-company-rating img {
+    max-width: 100px;
+    min-width: 100px;
+}
+
+form.user-detail-information-form {
+
+}
+
+form.user-detail-information-form label {
+}
+
+table.user-detail-table {
+}
+
+table.user-detail-table th {
+    text-align: center;
+}
+
+table.user-detail-table td {
+    text-align: center;
+}
+
+table.user-detail-table th {
+    background: #0067AF;
+    color: #ffffff;
+}
+
+/*rating*/
+
+fieldset, label {
+    margin: 0;
+    padding: 0;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rating {
+    border: none;
+    float: right;
+}
+
+.rating > input {
+    display: none;
+}
+
+.rating > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome, serif;
+    display: inline-block;
+    content: "\f005";
+}
+
+.rating > label {
+    color: #ddd;
+    float: right;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+    color: #3399cc;
+}
+
+/* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+    color: #3399ff;
+}
+
+/*02-12-2016: Dac: fix star*/
+.fa-fixed {
+    position: relative;
+    margin-top: 15%;
+}
+
+.form-control {
+    margin-top: -2%;
+}

@@ -1,0 +1,200 @@
+Recovery is the most complicated process in distributed databases. Recovery of a failed system in the communication network is very difficult.
+Two-phase commit protocol in Distributed databases
+
+Two-phase protocol is a type of atomic commitment protocol. This is a distributed algorithm which can coordinate all the processes that participate in the database and decide to commit or terminate the transactions. The protocol is based on commit and terminate action.
+The two-phase protocol ensures that all participant which are accessing the database server can receive and implement the same action (Commit or terminate), in case of local network failure.
+Two-phase commit protocol provides automatic recovery mechanism in case of a system failure.
+The location at which original transaction takes place is called as coordinator and where the sub process takes place is called as Cohort.
+
+Commit request:
+In commit phase the coordinator attempts to prepare all cohorts and take necessary steps to commit or terminate the transactions.
+
+Commit phase:
+The commit phase is based on voting of cohorts and the coordinator decides to commit or terminate the transaction.
+Concurrency problems in distributed databases.
+
+Some problems which occur while accessing the database are as follows:
+
+1. Failure at local locations
+When system recovers from failure the database is out dated compared to other locations. So it is necessary to update the database.
+
+2. Failure at communication location
+System should have a ability to manage temporary failure in a communicating network in distributed databases. In this case, partition occurs which can limit the communication between two locations.
+
+3. Dealing with multiple copies of data
+It is very important to maintain multiple copies of distributed data at different locations.
+
+4. Distributed commit
+While committing a transaction which is accessing databases stored on multiple locations, if failure occurs on some location during the commit process then this problem is called as distributed commit.
+
+5. Distributed deadlock
+Deadlock can occur at several locations due to recovery problem and concurrency problem (multiple locations are accessing same system in the communication network).
+Concurrency Controls in distributed databases
+
+There are three different ways of making distinguish copy of data by applying:
+
+1) Lock based protocol
+A lock is applied to avoid concurrency problem between two transaction in such a way that the lock is applied on one transaction and other transaction can access it only when the lock is released. The lock is applied on write or read operations. It is an important method to avoid deadlock.
+
+2) Shared lock system (Read lock)
+The transaction can activate shared lock on data to read its content. The lock is shared in such a way that any other transaction can activate the shared lock on the same data for reading purpose.
+
+3) Exclusive lock
+The transaction can activate exclusive lock on a data to read and write operation. In this system, no other transaction can activate any kind of lock on that same data.
+In transaction processing, databases, and computer networking, the two-phase commit protocol (2PC) is a type of atomic commitment protocol (ACP). It is a distributed algorithm that coordinates all the processes that participate in a distributed atomic transaction on whether to commit or abort (roll back) the transaction (it is a specialized type of consensus protocol). The protocol achieves its goal even in many cases of temporary system failure (involving either process, network node, communication, etc. failures), and is thus widely used.[1][2][3] However, it is not resilient to all possible failure configurations, and in rare cases, user (e.g., a system's administrator) intervention is needed to remedy an outcome. To accommodate recovery from failure (automatic in most cases) the protocol's participants use logging of the protocol's states. Log records, which are typically slow to generate but survive failures, are used by the protocol's recovery procedures. Many protocol variants exist that primarily differ in logging strategies and recovery mechanisms. Though usually intended to be used infrequently, recovery procedures compose a substantial portion of the protocol, due to many possible failure scenarios to be considered and supported by the protocol.
+
+In a "normal execution" of any single distributed transaction ( i.e., when no failure occurs, which is typically the most frequent situation), the protocol consists of two phases:
+
+The commit-request phase (or voting phase), in which a coordinator process attempts to prepare all the transaction's participating processes (named participants, cohorts, or workers) to take the necessary steps for either committing or aborting the transaction and to vote, either "Yes": commit (if the transaction participant's local portion execution has ended properly), or "No": abort (if a problem has been detected with the local portion), and
+The commit phase, in which, based on voting of the cohorts, the coordinator decides whether to commit (only if all have voted "Yes") or abort the transaction (otherwise), and notifies the result to all the cohorts. The cohorts then follow with the needed actions (commit or abort) with their local transactional resources (also called recoverable resources; e.g., database data) and their respective portions in the transaction's other output (if applicable).
+Note that the two-phase commit (2PC) protocol should not be confused with the two-phase locking (2PL) protocol, a concurrency control protocol.
+
+The protocol works in the following manner: one node is a designated coordinator, which is the master site, and the rest of the nodes in the network are designated the cohorts. The protocol assumes that there is stable storage at each node with a write-ahead log, that no node crashes forever, that the data in the write-ahead log is never lost or corrupted in a crash, and that any two nodes can communicate with each other. The last assumption is not too restrictive, as network communication can typically be rerouted. The first two assumptions are much stronger; if a node is totally destroyed then data can be lost.
+
+The protocol is initiated by the coordinator after the last step of the transaction has been reached. The cohorts then respond with an agreement message or an abort message depending on whether the transaction has been processed successfully at the cohort.
+
+Basic algorithm[edit]
+Commit request phase[edit]
+or voting phase
+
+The coordinator sends a query to commit message to all cohorts and waits until it has received a reply from all cohorts.
+The cohorts execute the transaction up to the point where they will be asked to commit. They each write an entry to their undo log and an entry to their redo log.
+Each cohort replies with an agreement message (cohort votes Yes to commit), if the cohort's actions succeeded, or an abort message (cohort votes No, not to commit), if the cohort experiences a failure that will make it impossible to commit.
+Commit phase[edit]
+or Completion phase
+
+Success[edit]
+If the coordinator received an agreement message from all cohorts during the commit-request phase:
+
+The coordinator sends a commit message to all the cohorts.
+Each cohort completes the operation, and releases all the locks and resources held during the transaction.
+Each cohort sends an acknowledgment to the coordinator.
+The coordinator completes the transaction when all acknowledgments have been received.
+Failure[edit]
+If any cohort votes No during the commit-request phase (or the coordinator's timeout expires):
+
+The coordinator sends a rollback message to all the cohorts.
+Each cohort undoes the transaction using the undo log, and releases the resources and locks held during the transaction.
+Each cohort sends an acknowledgement to the coordinator.
+The coordinator undoes the transaction when all acknowledgements have been received.
+
+An * next to the record type means that the record is forced to stable storage.[4]
+
+Disadvantages[edit]
+The greatest disadvantage of the two-phase commit protocol is that it is a blocking protocol. If the coordinator fails permanently, some cohorts will never resolve their transactions: After a cohort has sent an agreement message to the coordinator, it will block until a commit or rollback is received.
+
+Implementing the two-phase commit protocol[edit]
+Common architecture[edit]
+In many cases the 2PC protocol is distributed in a computer network. It is easily distributed by implementing multiple dedicated 2PC components similar to each other, typically named Transaction managers (TMs; also referred to as 2PC agents or Transaction Processing Monitors), that carry out the protocol's execution for each transaction (e.g., The Open Group's X/Open XA). The databases involved with a distributed transaction, the participants, both the coordinator and cohorts, register to close TMs (typically residing on respective same network nodes as the participants) for terminating that transaction using 2PC. Each distributed transaction has an ad hoc set of TMs, the TMs to which the transaction participants register. A leader, the coordinator TM, exists for each transaction to coordinate 2PC for it, typically the TM of the coordinator database. However, the coordinator role can be transferred to another TM for performance or reliability reasons. Rather than exchanging 2PC messages among themselves, the participants exchange the messages with their respective TMs. The relevant TMs communicate among themselves to execute the 2PC protocol schema above, "representing" the respective participants, for terminating that transaction. With this architecture the protocol is fully distributed (does not need any central processing component or data structure), and scales up with number of network nodes (network size) effectively.
+
+This common architecture is also effective for the distribution of other atomic commitment protocols besides 2PC, since all such protocols use the same voting mechanism and outcome propagation to protocol participants.[1][2]
+
+Protocol optimizations[edit]
+Database research has been done on ways to get most of the benefits of the two-phase commit protocol while reducing costs by protocol optimizations[1][2][3] and protocol operations saving under certain system's behavior assumptions.
+
+Presumed Abort and Presumed Commit[edit]
+Presumed abort or Presumed commit are common such optimizations.[2][3][5] An assumption about the outcome of transactions, either commit, or abort, can save both messages and logging operations by the participants during the 2PC protocol's execution. For example, when presumed abort, if during system recovery from failure no logged evidence for commit of some transaction is found by the recovery procedure, then it assumes that the transaction has been aborted, and acts accordingly. This means that it does not matter if aborts are logged at all, and such logging can be saved under this assumption. Typically a penalty of additional operations is paid during recovery from failure, depending on optimization type. Thus the best variant of optimization, if any, is chosen according to failure and transaction outcome statistics.
+
+Tree two-phase commit protocol[edit]
+The Tree 2PC protocol[2] (also called Nested 2PC, or Recursive 2PC) is a common variant of 2PC in a computer network, which better utilizes the underlying communication infrastructure. The participants in a distributed transaction are typically invoked in an order which defines a tree structure, the invocation tree, where the participants are the nodes and the edges are the invocations (communication links). The same tree is commonly utilized to complete the transaction by a 2PC protocol, but also another communication tree can be utilized for this, in principle. In a tree 2PC the coordinator is considered the root ("top") of a communication tree (inverted tree), while the cohorts are the other nodes. The coordinator can be the node that originated the transaction (invoked recursively (transitively) the other participants), but also another node in the same tree can take the coordinator role instead. 2PC messages from the coordinator are propagated "down" the tree, while messages to the coordinator are "collected" by a cohort from all the cohorts below it, before it sends the appropriate message "up" the tree (except an abort message, which is propagated "up" immediately upon receiving it or if the current cohort initiates the abort).
+
+The Dynamic two-phase commit (Dynamic two-phase commitment, D2PC) protocol[2][6] is a variant of Tree 2PC with no predetermined coordinator. It subsumes several optimizations that have been proposed earlier. Agreement messages (Yes votes) start to propagate from all the leaves, each leaf when completing its tasks on behalf of the transaction (becoming ready). An intermediate (non leaf) node sends when ready an agreement message to the last (single) neighboring node from which agreement message has not yet been received. The coordinator is determined dynamically by racing agreement messages over the transaction tree, at the place where they collide. They collide either at a transaction tree node, to be the coordinator, or on a tree edge. In the latter case one of the two edge's nodes is elected as a coordinator (any node). D2PC is time optimal (among all the instances of a specific transaction tree, and any specific Tree 2PC protocol implementation; all instances have the same tree; each instance has a different node as coordinator): By choosing an optimal coordinator D2PC commits both the coordinator and each cohort in minimum possible time, allowing the earliest possible release of locked resources in each transaction participant (tree node).
+In order to recuperate from database failure, database management systems resort to a number of recovery management techniques. In this chapter, we will study the different approaches for database recovery.
+
+The typical strategies for database recovery are -
+
+In case of soft failures that result in inconsistency of database, recovery strategy includes transaction undo or rollback. However, sometimes, transaction redo may also be adopted to recover to a consistent state of the transaction.
+
+In case of hard failures resulting in extensive damage to database, recovery strategies encompass restoring a past copy of the database from archival backup. A more current state of the database is obtained through redoing operations of committed transactions from transaction log.
+
+Recovery from Power Failure
+Power failure causes loss of information in the non-persistent memory. When power is restored, the operating system and the database management system restart. Recovery manager initiates recovery from the transaction logs.
+
+In case of immediate update mode, the recovery manager takes the following actions -
+
+Transactions which are in active list and failed list are undone and written on the abort list.
+
+Transactions which are in before-commit list are redone.
+
+No action is taken for transactions in commit or abort lists.
+
+In case of deferred update mode, the recovery manager takes the following actions -
+
+Transactions which are in the active list and failed list are written onto the abort list. No undo operations are required since the changes have not been written to the disk yet.
+
+Transactions which are in before-commit list are redone.
+
+No action is taken for transactions in commit or abort lists.
+
+Recovery from Disk Failure
+A disk failure or hard crash causes a total database loss. To recover from this hard crash, a new disk is prepared, then the operating system is restored, and finally the database is recovered using the database backup and transaction log. The recovery method is same for both immediate and deferred update modes.
+
+The recovery manager takes the following actions -
+
+The transactions in the commit list and before-commit list are redone and written onto the commit list in the transaction log.
+
+The transactions in the active list and failed list are undone and written onto the abort list in the transaction log.
+
+Checkpointing
+Checkpoint is a point of time at which a record is written onto the database from the buffers. As a consequence, in case of a system crash, the recovery manager does not have to redo the transactions that have been committed before checkpoint. Periodical checkpointing shortens the recovery process.
+
+The two types of checkpointing techniques are -
+
+Consistent checkpointing
+Fuzzy checkpointing
+Consistent Checkpointing
+Consistent checkpointing creates a consistent image of the database at checkpoint. During recovery, only those transactions which are on the right side of the last checkpoint are undone or redone. The transactions to the left side of the last consistent checkpoint are already committed and needn’t be processed again. The actions taken for checkpointing are -
+
+The active transactions are suspended temporarily.
+All changes in main-memory buffers are written onto the disk.
+A “checkpoint” record is written in the transaction log.
+The transaction log is written to the disk.
+The suspended transactions are resumed.
+If in step 4, the transaction log is archived as well, then this checkpointing aids in recovery from disk failures and power failures, otherwise it aids recovery from only power failures.
+
+Fuzzy Checkpointing
+In fuzzy checkpointing, at the time of checkpoint, all the active transactions are written in the log. In case of power failure, the recovery manager processes only those transactions that were active during checkpoint and later. The transactions that have been committed before checkpoint are written to the disk and hence need not be redone.
+
+Example of Checkpointing
+Let us consider that in system the time of checkpointing is tcheck and the time of system crash is tfail. Let there be four transactions Ta, Tb, Tc and Td such that -
+
+Ta commits before checkpoint.
+
+Tb starts before checkpoint and commits before system crash.
+
+Tc starts after checkpoint and commits before system crash.
+
+Td starts after checkpoint and was active at the time of system crash.
+
+The situation is depicted in the following diagram -
+
+Depicted Situation
+The actions that are taken by the recovery manager are -
+
+Nothing is done with Ta.
+Transaction redo is performed for Tb and Tc.
+Transaction undo is performed for Td.
+Transaction Recovery Using UNDO / REDO
+Transaction recovery is done to eliminate the adverse effects of faulty transactions rather than to recover from a failure. Faulty transactions include all transactions that have changed the database into undesired state and the transactions that have used values written by the faulty transactions.
+
+Transaction recovery in these cases is a two-step process -
+
+UNDO all faulty transactions and transactions that may be affected by the faulty transactions.
+
+REDO all transactions that are not faulty but have been undone due to the faulty transactions.
+
+Steps for the UNDO operation are -
+
+If the faulty transaction has done INSERT, the recovery manager deletes the data item(s) inserted.
+
+If the faulty transaction has done DELETE, the recovery manager inserts the deleted data item(s) from the log.
+
+If the faulty transaction has done UPDATE, the recovery manager eliminates the value by writing the before-update value from the log.
+
+Steps for the REDO operation are -
+
+If the transaction has done INSERT, the recovery manager generates an insert from the log.
+
+If the transaction has done DELETE, the recovery manager generates a delete from the log.
+
+If the transaction has done UPDATE, the recovery manager generates an update from the log.

@@ -1,0 +1,27 @@
+“Unidimensionality” is used to describe a specific type of measurement scale. A unidimensional measurement scale has only one (“uni”) dimension. In other words, it can be represented by a single number line. Some examples of simple, unidimensional scales:
+
+Height of people.
+Weight of cars.
+IQ.
+Volume of liquid.
+
+ 
+Unidimensionality can also refer to measuring a single ability, attribute, construct, or skill. For example, a unidimensional mathematical test would be designed to measure only mathematical ability (and not, say, grasp of English grammar, knowledge of sports, or other non-mathematical subjects or concepts).
+
+
+ 
+Some concepts (like height or weight) are obviously unidimensional. Others can be forced into a unidimensional status by narrowing the idea into a single, measurable construct. For example, self-worth is a psychological concept that has many layers of complexity and can be different for different situations (at home, at a party, at work, at your wedding). However, you can narrow the concept by making a simple line that has “low self worth” on the left and “high self worth” on the right.
+unidimensionality
+
+
+The three major types of unidimensional scales are:
+
+Thurstone or “Equal-Appearing Interval” Scale: has a number of agree/disagree statements with numerical values attached. It is designed to be similar to an interval scale
+Likert or “Summative” Scale: respondents are asked to rate items according to a level of agreement.
+Guttman or “Cumulative” Scale: a scale with binary YES/NO answers.
+Unidimensionality vs. Multidimensionality
+Sometimes, a unidimensional scale can over-simplify the concept you are studying. For example, scholarly ability can differ according to whether a student is stressed (e.g. exam mode) or non-stressed (e.g homework mode). A multidimensional scale has, as the name implies, multiple scales (which you can think of as multiple number lines).
+multidimensional
+
+
+Unidimensionality is a key concept that affects outcomes of many statistical tests and analyses. For example, unidimensional data will maximize Cronbach’s Alpha.

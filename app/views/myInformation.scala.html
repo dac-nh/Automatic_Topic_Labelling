@@ -1,0 +1,106 @@
+<head>
+    <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/userDetail.css")">
+</head>
+<div class="row" style="margin-left: 150px;
+    margin-right: 70px;
+    font-size: large">
+        <!-- left column -->
+    <div id="avatar-rating" class="cold-lg-4 col-md-5 col-sm-12 col-xs-12">
+        <div class="text-center">
+            <img id="avatar" src="@routes.Assets.versioned("images/DSC_0035a.jpg")"
+            class="avatar img-circle img-thumbnail"
+            alt="avatar">
+        </div>
+    </div>
+        <!-- edit form column -->
+    <div id="info" class="cold-lg-8 col-md-7 col-sm-12 col-xs-12 personal-info">
+        <h1 class="header-title" style="position: relative">
+            <span>STUDENT INFORMATION</span>
+        </h1>
+        <form class="form-horizontal user-detail-information-form" role="form">
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">Full Name</label>
+                <div class="cold-lg-4 col-md-5 col-sm-5 col-xs-5">
+                    <p id="name">Nguyen Huu Dac</p>
+                </div>
+                <label class="cold-lg-2 col-md-2 col-sm-2 col-xs-2">Gender</label>
+                <div class="cold-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <p id="gender">MALE</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">Date of Birth</label>
+                <div class="cold-lg-4 col-md-5 col-sm-5 col-xs-5">
+                    <p id="birthday">24 / 02 / 1995</p>
+                </div>
+                <label class="cold-lg-2 col-md-2 col-sm-2 col-xs-2">Telephone</label>
+                <div class="cold-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <p id="telNum">0936.010.252</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">LinkedIn</label>
+                <div class="cold-lg-9 col-md-10 col-sm-10 col-xs-10">
+                    <p id="addNum">linkedin.com/in/dac-nguyen-145470150</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">University</label>
+                <div class="cold-lg-4 col-md-5 col-sm-5 col-xs-5">
+                    <p id="university">University of Information Technology</p>
+                </div>
+
+                <label class="cold-lg-2 col-md-2 col-sm-2 col-xs-2">Course Year</label>
+                <div class="cold-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <p id="academicYear">2013</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">Faculty</label>
+                <div class="cold-lg-4 col-md-5 col-sm-5 col-xs-5">
+                    <p id="faculty">Information System</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">Program</label>
+                <div class="cold-lg-9 col-md-10 col-sm-10 col-xs-10">
+                    <p id="major">Advanced Education Program</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="cold-lg-3 col-md-2 col-sm-2 col-xs-2">Email</label>
+                <div class="cold-lg-9 col-md-10 col-sm-10 col-xs-10">
+                    <p id="email">13520173&#64;gm.uit.edu.vn</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="introduction" ng-controller="UserIntroduction">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h1 class="header-line" style="position: relative;
+                margin-bottom: 0.7em"><span>Introduction</span></h1>
+
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="info">
+                <p id="intro" style="text-align: center">Handsome, talent</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="introduction" ng-controller="UserIntroduction">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <h1 class="header-line" style="position: relative;
+                margin-bottom: 0.7em"><span>Project Information</span></h1>
+
+        </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="info">
+                <p id="intro" style="text-align: center">This is my graduation thesis. It is web application and by applying classification and distance,
+                    <br>it can label main topic and sub-topics (or themes) contained in a science paper or document automatically.
+                    <br>Technologies: Play framework with Scala, HTML, JQuery, CSS, JS, Neo4j, OrientDB. </p>
+            </div>
+        </div>
+    </div>
+</div>

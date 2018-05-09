@@ -1,0 +1,32 @@
+Physical data model represents how the model will be built in the database. A physical database model shows all table structures, including column name, column data type, column constraints, primary key, foreign key, and relationships between tables. Features of a physical data model include:
+
+Specification all tables and columns.
+Foreign keys are used to identify relationships between tables.
+Denormalization may occur based on user requirements.
+Physical considerations may cause the physical data model to be quite different from the logical data model.
+Physical data model will be different for different RDBMS. For example, data type for a column may be different between MySQL and SQL Server.
+The steps for physical data model design are as follows:
+
+Convert entities into tables.
+Convert relationships into foreign keys.
+Convert attributes into columns.
+Modify the physical data model based on physical constraints / requirements.
+Comparing the physical data model shown above with the logical data model diagram, we see the main differences between the two:
+
+Entity names are now table names.
+Attributes are now column names.
+Data type for each column is specified. Data types can be different depending on the actual database being used.
+A physical data model (or database design) is a representation of a data design as implemented, or intended to be implemented, in a database management system. In the lifecycle of a project it typically derives from a logical data model, though it may be reverse-engineered from a given database implementation. A complete physical data model will include all the database artifacts required to create relationships between tables or to achieve performance goals, such as indexes, constraint definitions, linking tables, partitioned tables or clusters. Analysts can usually use a physical data model to calculate storage estimates; it may include specific storage allocation details for a given database system.
+
+As of 2012 seven main databases dominate the commercial marketplace: Informix, Oracle, Postgres, SQL Server, Sybase, DB2 and MySQL. Other RDBMS systems tend either to be legacy databases or used within academia such as universities or further education colleges. Physical data models for each implementation would differ significantly, not least due to underlying operating-system requirements that may sit underneath them. For example: SQL Server runs only on Microsoft Windows operating-systems, while Oracle and MySQL can run on Solaris, Linux and other UNIX-based operating-systems as well as on Windows. This means that the disk requirements, security requirements and many other aspects of a physical data model will be influenced by the RDBMS that a database administrator (or an organization) chooses to use.
+Physical schema is a term used in data management to describe how data is to be represented and stored (files, indices, et al.) in secondary storage using a particular database management system (DBMS) (e.g., Oracle RDBMS, Sybase SQL Server, etc.).
+
+In the ANSI/SPARC Architecture three schema approach, the internal schema is the view of data that involved data management technology. This is as opposed to an external schema that reflects an individual's view of the data, or the conceptual schema that is the integration of a set of external schemas.
+
+Subsequently[citation needed] the internal schema was recognized to have two parts:
+
+The logical schema was the way data were represented to conform to the constraints of a particular approach to database management. At that time the choices were hierarchical and network. Describing the logical schema, however, still did not describe how physically data would be stored on disk drives. That is the domain of the physical schema. Now logical schemas describe data in terms of relational tables and columns, object-oriented classes, and XML tags.
+
+A single set of tables, for example, can be implemented in numerous ways, up to and including an architecture where table rows are maintained on computers in different countries.
+
+See also[edit]

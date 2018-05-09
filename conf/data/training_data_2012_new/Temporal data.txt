@@ -1,0 +1,71 @@
+Temporal data is simply data that represents a state in time, such as the land-use patterns of Hong Kong in 1990, or total rainfall in Honolulu on July 1, 2009. Temporal data is collected to analyze weather patterns and other environmental variables, monitor traffic conditions, study demographic trends, and so on. This data comes from many sources ranging from manual data entry to data collected using observational sensors or generated from simulation models. Below are some examples of temporal data.
+
+Visualizing data through time
+The example on the left shows the 1992 time stamp of the change in the percentage of cropland (per grid cell) worldwide from 1700 to 1992 in ArcMap. When visualized over time, the percentage of cropland in some areas increases as time passes. The example in the middle shows the time stamp from April 18, 1997, of sea surface-temperature change in ArcGlobe. The data spans 1997–1998, an El Niño year. When visualized over time, the sea surface temperature changes with each successive month. The example on the right shows the 1994 time stamp of the oil and gas production of a production field in Wyoming in ArcMap. When visualized over time, the pie charts on the map indicate the changing oil and gas production rates from each producing well (red is gas in barrels of oil equivalent, and green is oil in barrels). The graph shows production through time for the entire field: gas (red), oil (green), and water (blue).
+
+Storing temporal data
+
+In ArcGIS, you can store and manage this data in a variety of formats such as feature classes, mosaic datasets, raster catalogs, and so on. Choosing the format depends on the nature of the temporal data and how you want to visualize it.
+
+Learn about how time is supported in spatial data
+
+Here are some scenarios that may help you decide which data format you can store your data in.
+
+Move features—Visualize the point locations of ocean mammals or other populations to understand patterns in their movement.
+Change the size or shape of features—Understand population increases per city or parcel boundary changes.
+Change the color of features—Learn how fatalities from a disease are increasing based on changing colors in the layer symbology.
+Examine changes using raster catalogs or netCDF data—View ocean temperature changes or weather patterns.
+Plot change over time in a graph—Examine change in ozone levels or water pressure at different stations.
+Storing time values
+
+Time values in your data can represent a point in time, sampled on a regular or irregular interval. These time values are stored in a single attribute field and can be used to visualize temporal data at particular times on the time line. For example, stream flow data is collected at different points in time at regular intervals. However, lightning or earthquake data is collected at irregular intervals depending on when a particular lightning storm or earthquake occurs.
+
+Time values can also represent durations of time such as when a particular event occurs over a period of time. Time values in this case are stored in two fields, one representing the start time of the event, and the other representing the end time of the event. For example, polygon features representing a fire perimeter have a start and end time that depend on when the fire started and ended.
+
+These time values can be stored in date, string, or numeric fields.
+
+Learn more about the best practices of storing temporal data
+
+Learn more about supported field formats
+
+Using temporal data in ArcGIS
+
+Temporal data can be visualized in ArcGIS after time enabling the layer. This can be done by setting the time properties of the layer using the Time tab on the Layer Properties dialog box. Once the time properties have been set on the temporal data, you can visualize it using the time slider. Also, you can serve the time-enabled layer as a map service.
+
+
+Learn more about serving a time-enabled layer as a map service
+Temporal data refers to data, where changes over time or temporal aspects play a central role or are of interest.
+
+
+Temporal data is data that varies over time.
+[Jensen and Snodgrass, 1999]
+
+A temporal data denotes the evolution of an object characteristic over a period of time.
+[Daassi and Nigay, 2004]
+
+Time dependent data is characterized by data elements being a function of time. In general, data takes the form
+d = f(t)
+For data defined at discrete time stamps ti, this relation can be represented as:
+D = {(t1, d1),( t2, d2), ..., (tn, dn)}
+where
+di = f(ti)
+[Müller and Schumann, 2003]
+
+Time-series are a part of the broader field of time-oriented data:
+Time series data is characterized by data elements being a function of time. In general, this data takes the following form:
+D = {(t1, y1),( t2, y2), ..., (tn, yn)}
+with
+yi = f(ti)
+[Weber et al., 2001]
+
+temporal data
+time-oriented data
+time-varying data
+time-dependent data
+[edit] References
+
+[Daassi et al., 2004] Chaouki Daassi, Laurence Nigay, and Marie-Christine Fauvet. Visualization Process of Temporal Data, Lecture Notes in Computer Science, 3180, Springer-Verlag Heidelberg, 2004.
+[Jensen and Snodgrass, 1999] Christian S. Jensen and Richard T. Snodgrass. Temporal Data Management, IEEE Transactions on Knowledge and Data Engineering, 11:36-44, 1999.
+[Müller and Schumann, 2003] W. Müller and H. S. Schumann. Visualization Methods for Time-dependent Data - an Overview, In Proceedings of Winter Simulation 2003, New Orleans, USA, 2003
+[Weber et al., 2001] Marc Weber, Marc Alexa, and Wolfgang Müller. Visualizing Time-Series on Spirals, In Proceedings of the IEEE Symposium on Information Visualization 2001 (InfoVis 2001), p. 7-14, October 2001.
+Category: Glossary
